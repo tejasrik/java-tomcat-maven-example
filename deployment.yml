@@ -19,4 +19,5 @@ spec:
         image: sanmodi/test:latest
         ports:
         - containerPort: 8080
+        command: ['sh', '-c', 'echo The app is running! && sleep 10000']
        
