@@ -3,7 +3,7 @@
 This is an example ready-to-deploy java web application built for Tomcat using Maven and webapp-runner. 
 
 
-Test1
+Test 1
 
 ## Running Locally
 
