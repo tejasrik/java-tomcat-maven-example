@@ -1,14 +1,11 @@
-apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: java-webdeployment
-  labels:
-    app: java-webapp
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: java-webapp
+  
   template:
     metadata:
       labels:
@@ -19,5 +16,3 @@ spec:
         image: sanmodi/test:latest
         ports:
         - containerPort: 8080
-        command: ['sh', '-c', 'echo The app is running! && sleep 10000']
-       
