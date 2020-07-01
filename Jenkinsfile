@@ -19,8 +19,9 @@ node('master') {
 }
     stage 'terraform'
 
-bat label: '', script: "terraform destroy -auto-approve"
+
 bat label: '', script: "terraform init"
+bat label: '', script: "terraform destroy -auto-approve"
 bat label: '', script: "terraform plan"
 bat label: '', script: "terraform apply -auto-approve"
 //bat label: '', script: "mkdir .kube"
