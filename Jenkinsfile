@@ -38,5 +38,6 @@ catch(err){
 }
 
 bat label: '', script: "kubectl get pods"
-bat label: '', script: "kubectl expose java-webdeployment2 --type=LoadBalancer"
+bat label: '', script: "kubectl expose deployment java-webdeployment2 --type=LoadBalancer"
+bat label: '', script: "kubectl get svc"
 }
