@@ -22,21 +22,21 @@ node('master') {
 
 bat label: '', script: "terraform init"
 bat label: '', script: "terraform destroy -auto-approve"
-bat label: '', script: "terraform plan"
-bat label: '', script: "terraform apply -auto-approve"
+//bat label: '', script: "terraform plan"
+//bat label: '', script: "terraform apply -auto-approve"
 //bat label: '', script: "mkdir .kube"
-bat label: '', script: 'terraform output kubeconfig > "C:/Users/Sanskar Modi/Desktop/.kube/config"'
-bat label: '', script: "kubectl get nodes"
+//bat label: '', script: 'terraform output kubeconfig > "C:/Users/Sanskar Modi/Desktop/.kube/config"'
+//bat label: '', script: "kubectl get nodes"
 
-stage 'Kubernetes'
-try{
-    bat label: '', script: "kubectl apply -f  ."
-}
-catch(err){
-    bat label: '', script: "kubectl create -f  ."
-}
+//stage 'Kubernetes'
+//try{
+  //  bat label: '', script: "kubectl apply -f  ."
+//}
+//catch(err){
+  //  bat label: '', script: "kubectl create -f  ."
+//}
 
-bat label: '', script: "kubectl get pods"
-bat label: '', script: "kubectl expose deployment java-webdeployment2 --type=LoadBalancer"
-bat label: '', script: "kubectl get svc"
+//bat label: '', script: "kubectl get pods"
+//bat label: '', script: "kubectl expose deployment java-webdeployment2 --type=LoadBalancer"
+//bat label: '', script: "kubectl get svc"
 }
