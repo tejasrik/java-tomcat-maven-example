@@ -28,7 +28,6 @@ bat label: '', script: "terraform apply -auto-approve"
 bat label: '', script: 'terraform output kubeconfig > "C:/Users/Sanskar Modi/Desktop/.kube/config"'
 bat label: '', script: "kubectl get nodes"
 
-
 stage 'Kubernetes'
 try{
     bat label: '', script: "kubectl apply -f  ."
