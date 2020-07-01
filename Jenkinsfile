@@ -17,7 +17,16 @@ node('master') {
       bat label: '', script: "docker push sanmodi/test"
       bat label: '', script: "docker run -d  sanmodi/test"
 }
-    
+    stage 'terraform'
+
+bat label: '', script: "terraform destroy -auto-approve"
+bat label: '', script: "terraform init"
+bat label: '', script: "terraform plan"
+bat label: '', script: "terraform apply -auto-approve"
+//bat label: '', script: "mkdir .kube"
+bat label: '', script: 'terraform output kubeconfig > "C:/Users/Sanskar Modi/Desktop/.kube/config"'
+bat label: '', script: "kubectl get nodes"
+
 
 stage 'Kubernetes'
 try{
@@ -28,5 +37,5 @@ catch(err){
 }
 
 bat label: '', script: "kubectl get pods"
-
+bat label: '', script: "kubectl expose java-webdeployment2 --type=LoadBalancer"
 }
