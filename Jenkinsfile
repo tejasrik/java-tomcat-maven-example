@@ -1,7 +1,7 @@
 node('master') {
     stage 'Git checkout'
     
-    git 'https://github.com/Sanskar-Modi/java-tomcat-maven-example'
+    git 'https://github.com/tejasrik/java-tomcat-maven-example'
     
     stage 'Maven'
     bat label: '', script: 'mvn clean package'
