@@ -1,41 +1,37 @@
-node('master') {
-    stage 'Git checkout'
+node{
+    stage ('Git Checkout'){
+  git'https://github.com/tejasrik/Selenium-Maven-Template.git'
+  
+    }
     
-    git 'https://github.com/tejasrik/java-tomcat-maven-example'
+    stage('Compile-Package'){
+      // Get maven home path
+     //def mvnHome =  tool name: 'maven3.6.3', type: 'maven' 
+     //batlabel "${mvnHome}/bin/mvn package"
+  // bat "${mvnHome}/bin/mvn clean package"
+ // bat label: '', script: "${mvnHome}/bin/mvn clean package"
+ bat label: '', script: 'mvn clean package'
+    }
+   
+   stage('SonarQube Analysis') {
+       withSonarQubeEnv() { // You can override the credential to be used
+bat label: '', script: 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+}
+    stage('publish docker'){
+    bat label: '', script: 'docker build -t tejasrik/jenkinspipeline .'
+    bat label:'',script:'docker login -u tejasrik -p Tejasri@6523'
+    bat label:'',script:'docker push tejasrik/jenkinspipeline'
+    bat label:'',script:'docker run -d tejasrik/jenkinspipeline'
+    }
     
-    stage 'Maven'
-    bat label: '', script: 'mvn clean package'
     
-    stage('SonarQube analysis') {
-     withSonarQubeEnv() { // You can override the credential to be used
-     bat label: '', script: 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+        
+   }
+    
+  
+  
 }
-    }  
-    stage 'Docker build'
-    withCredentials([usernameColonPassword(credentialsId: 'Docker', variable: '')]) {
-      bat label: '', script: "docker build -t sanmodi/test ."
-      bat label: '', script: "docker push sanmodi/test"
-      bat label: '', script: "docker run -d  sanmodi/test"
-}
-    stage 'terraform'
 
 
-bat label: '', script: "terraform init"
-bat label: '', script: "terraform destroy -auto-approve"
-//bat label: '', script: "terraform plan"
-//bat label: '', script: "terraform apply -auto-approve"
-//bat label: '', script: 'terraform output kubeconfig > "C:/Users/Sanskar Modi/Desktop/.kube/config"'
-//bat label: '', script: "kubectl get nodes"
 
-//stage 'Kubernetes'
-//try{
-  //  bat label: '', script: "kubectl apply -f  ."
-//}
-//catch(err){
-//    bat label: '', script: "kubectl create -f  ."
-//}
 
-//bat label: '', script: "kubectl get pods"
-//bat label: '', script: "kubectl expose deployment java-webdeployment2 --type=LoadBalancer"
-//bat label: '', script: "kubectl get svc"
-}
