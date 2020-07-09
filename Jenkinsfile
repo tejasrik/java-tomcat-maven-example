@@ -1,6 +1,6 @@
 node{
     stage ('Git Checkout'){
-  git'https://github.com/tejasrik/Selenium-Maven-Template.git'
+  git'https://github.com/tejasrik/java-tomcat-maven-example.git'
   
     }
     
