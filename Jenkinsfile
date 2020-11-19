@@ -3,6 +3,7 @@ node{
   git'https://github.com/tejasrik/java-tomcat-maven-example.git'
   
     }
+}
 /*
     
   stage('install IAM authenticator'){
